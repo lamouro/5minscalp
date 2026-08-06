@@ -1,0 +1,544 @@
+# tactiq.io free youtube transcript
+# I Let Claude Code Build a FREE 5-Minute Scalping Bot… The Results Were Insane
+# https://www.youtube.com/watch/p-iQs2oRX6Q
+
+00:00:00.000 I gave Claude some brand new model Opus
+00:00:02.360 5A real trading account with a one
+00:00:05.440 mission to become a 5-minute scalper. I
+00:00:08.480 put 2 hours on the clock. The first hour
+00:00:11.320 to look for high probability trades, the
+00:00:14.160 second hour to actually take those
+00:00:16.400 trades. No help from me and the thing
+00:00:18.920 that blew my socks off, it took multiple
+00:00:21.280 trades and won every single one of them.
+00:00:24.120 Now, I have been backtesting strategies
+00:00:25.960 here on YouTube for over 5 years. I've
+00:00:28.720 backtested over 2,000 strategies and one
+00:00:31.400 of the top traders on multiple
+00:00:33.480 exchanges. So, I'm thinking it's like
+00:00:35.600 the same as you. No way a high win rate
+00:00:38.360 on such a low timeframe. I didn't expect
+00:00:40.680 that either and it's with my real money.
+00:00:43.840 Now, one of the trades did actually come
+00:00:45.880 close to a disaster before it was closed
+00:00:49.200 and the fun part about the whole of this
+00:00:50.880 experiment was Claude was doing a second
+00:00:53.400 job in the background, which I think was
+00:00:55.440 potentially the best part of this video.
+00:00:57.560 So, stay with me. I'll share with you
+00:00:59.080 every single trade, the truth behind the
+00:01:02.080 win rate because the truth matters way
+00:01:04.920 more than these numbers. Okay, so what
+00:01:07.720 are you actually going to get out of
+00:01:08.680 this video today? I'm going to be
+00:01:10.360 sharing with you every single prompt.
+00:01:13.560 I'm going to be using free tools where
+00:01:15.760 possible and where not, you most
+00:01:17.920 probably already have that subscription
+00:01:19.760 anyway. We're going to be giving Claude
+00:01:21.960 two missions as I said earlier, one
+00:01:24.600 mission to become a super scalper with a
+00:01:26.920 2-hour window and in a secret mission,
+00:01:30.560 which I'll talk to you about in a
+00:01:31.840 minute. Once all of that's done, I'm
+00:01:33.800 going to go through the results with
+00:01:35.280 you, which you will also get access to
+00:01:37.360 as well. And then finally, we'll go
+00:01:39.560 through some real talk like in every
+00:01:41.320 single one of my videos, going through
+00:01:43.000 what I think about the actual results.
+00:01:45.320 And after 5 years of actually trading
+00:01:47.360 automated systems, do I think this one
+00:01:49.800 is any better? Guys, before we go
+00:01:52.040 straight over to my computer, if you are
+00:01:53.480 enjoying this video and you are looking
+00:01:55.360 for AI trading, if you don't mind giving
+00:01:58.040 a good old thumbs up for this video,
+00:02:00.200 don't forget to subscribe. I do videos
+00:02:01.960 about AI and AI trading every single
+00:02:04.440 week. Okay, so as you can see, I'm
+00:02:06.479 already on my computer. We're going to
+00:02:08.119 be using Claude Code for this example
+00:02:11.640 today. We're going to be using its
+00:02:13.680 latest model Opus 5. So, if you haven't
+00:02:17.880 already got Claude desktop in
+00:02:19.440 downloaded, you have to go to
+00:02:20.760 claude.com/download
+00:02:22.600 and download Claude Code. Now, once you
+00:02:24.920 have Claude open, you will need to go to
+00:02:26.800 the code section over on the side just
+00:02:29.200 here. And we're going to be using what
+00:02:30.840 they call an MCP server. Now, an MCP
+00:02:33.880 server might sound a bit scary, but all
+00:02:36.520 it is is just giving tools to Claude so
+00:02:39.280 that it can actually trade. Now, I'm
+00:02:40.880 going to be giving two tools to Claude,
+00:02:43.400 and they're pretty simple to install.
+00:02:45.760 The first is Trader Kit. Trader Kit
+00:02:48.560 allows you to backtest any trading
+00:02:50.840 strategy on TradingView without having
+00:02:53.680 to use any backdoors or anything that
+00:02:55.280 TradingView doesn't like. And then gives
+00:02:57.280 you the code for the strategy. If you go
+00:02:59.880 over here, the community has already
+00:03:02.239 backtested over 352,000
+00:03:06.200 backtests on multiple coin pairs,
+00:03:09.560 including Forex, gold, and also and also
+00:03:13.519 crypto. Now, this tool is pretty simple
+00:03:15.840 to install. We just click on my account,
+00:03:18.200 then copy this line of code, go over to
+00:03:21.160 Claude, and paste into Claude Code. Hey
+00:03:23.920 there, buddy, would you install this
+00:03:25.840 globally for me? Boom! Just paste that
+00:03:28.800 in and hit enter. It will go away and
+00:03:32.000 install TradingKit for you so that you
+00:03:34.600 can start backtesting strategies. I'm
+00:03:37.040 also going to be using another tool,
+00:03:39.040 something new that I built this week.
+00:03:41.400 This is another MCP server that gives
+00:03:44.200 Claude access to TradingView's strategy
+00:03:47.519 library. There's hundreds, if not
+00:03:49.800 thousands, of free indicators on
+00:03:52.920 TradingView. And unfortunately, when you
+00:03:55.200 ask Claude to backtest or try a trading
+00:03:58.120 strategy, it generally goes for the
+00:04:00.520 terrible RSI or moving averages, all of
+00:04:03.680 these indicators that are losing money.
+00:04:06.320 The wonderful community of TradingView
+00:04:08.640 developers have built thousands and
+00:04:10.840 thousands of indicators, so you can get
+00:04:13.160 out of the normal RSIs and actually find
+00:04:16.040 something a little bit better. This tool
+00:04:18.079 here is a pretty simple as well. We just
+00:04:20.238 go here, we copy the whole of the read
+00:04:22.440 me, and ask Claude to install that as
+00:04:25.560 well. Okay, so now we have the two
+00:04:28.080 tools. TradingKit will also ask you if
+00:04:30.400 you want to live trade when you do the
+00:04:32.840 onboarding process, and ask you to
+00:04:35.040 connect over to your exchange. Now,
+00:04:37.160 personally, I'm going to be using my
+00:04:39.160 Bybit account, and I've set up a
+00:04:41.360 sub-account, as you can see here, with
+00:04:43.880 just under $2,500.
+00:04:47.480 Now, the reason I'm not using my full
+00:04:49.280 account is because I like to diversify
+00:04:51.400 my portfolio, have a multiple
+00:04:52.919 sub-accounts, and this is just an
+00:04:54.640 experiment. So, once you've done the
+00:04:56.680 full onboarding process, you will be
+00:04:58.919 also able to do exactly what I'm doing
+00:05:01.280 here today.
+00:05:02.640 Okay, so the first thing that I need to
+00:05:03.880 do to make sure that everything's
+00:05:05.360 working is make sure that we're actually
+00:05:07.520 connecting. So, hey there, buddy, could
+00:05:09.680 you go away and get my Bybit balance?
+00:05:13.240 Okay, that took a couple of seconds, and
+00:05:14.640 as you can see, we have exactly the
+00:05:16.360 balances I said earlier. Everything is
+00:05:18.360 activated. We're on my Bybit account on
+00:05:21.000 a unified account. So, we're ready to
+00:05:23.320 go. I've already set up a prompt. Let's
+00:05:25.720 go through the prompt very, very
+00:05:27.280 quickly. Now, this prompt I actually
+00:05:29.520 have a changed very slightly in
+00:05:31.960 comparison to my previous videos, after
+00:05:34.919 seeing how Claude reacted a bit
+00:05:37.760 connivingly last time, where it let the
+00:05:40.360 other LLMs just trade and sat on the
+00:05:42.760 sidelines just letting the other traders
+00:05:45.400 lose. I have actually changed the
+00:05:48.080 prompt. As you can see, I've set it up
+00:05:50.320 as a competition instead. You're an
+00:05:52.160 autonomous agent cryptocurrency trading
+00:05:55.360 competition. You're trading against your
+00:05:57.920 opponents. It has two phases. The first
+00:06:01.320 phase is to research and strategy
+00:06:04.000 development, allowing it to go through
+00:06:06.440 and scan the markets. Now, I think this
+00:06:08.760 is essential because instead of just
+00:06:11.240 going away and randomly trading, it's
+00:06:13.480 using its own logic to build ideas
+00:06:15.680 around current market conditions and is
+00:06:18.240 even allowed to use indicators to try
+00:06:21.240 and find better setups. As you can see,
+00:06:24.320 the prompt is a very very complete. And
+00:06:27.080 if I go down, you'll be able to see that
+00:06:28.200 phase two is actually where it is
+00:06:30.680 trading. We also asked it to create a
+00:06:33.040 log so that we can actually go through
+00:06:34.760 the trades and understand the real
+00:06:36.480 decisions behind those trades. So, I
+00:06:38.760 think the time has come. Let's let this
+00:06:40.560 thing trade for two hours. I'm going to
+00:06:42.680 put it in the background. Like I said,
+00:06:44.280 it's going to go away and create a
+00:06:45.640 strategy, and then we'll start trading
+00:06:48.000 in 1 hour. And here we go. Boom. Right,
+00:06:51.960 while that's gone away, I told you about
+00:06:54.600 something that it actually is doing as a
+00:06:56.760 side mission. Instead of just trading
+00:06:59.680 for two hours, I've actually asked it to
+00:07:01.680 go away and also create a strategy.
+00:07:04.360 Because it's all great having a random
+00:07:06.160 trades that might actually work, but
+00:07:08.560 previous models have also been fantastic
+00:07:10.720 at creating and engineering new
+00:07:12.760 strategies, and this is where I believe
+00:07:15.040 the real edge is. Building multiple
+00:07:17.360 strategies, leveraging the time to allow
+00:07:20.720 AI to build and backtest strategies was
+00:07:24.600 something that used to cost a lot of
+00:07:26.520 money and now can be done in a couple of
+00:07:28.840 seconds. So, one of the most powerful
+00:07:31.080 things about Trade Kit is that you can
+00:07:33.320 actually backtest strategies. It has a
+00:07:35.360 data for forex, crypto, and gold, and
+00:07:38.720 all of those are great things. And you
+00:07:40.760 can actually go through other people's
+00:07:42.520 strategies and see the code behind those
+00:07:45.360 strategies. We're working together as a
+00:07:47.000 community to find strategies together,
+00:07:49.840 and over 300,000 strategies have already
+00:07:52.880 been back-tested. So, I'm going to be
+00:07:54.440 giving Claude a side mission. That side
+00:07:57.200 mission is to go away and find the best
+00:08:00.040 possible strategy on the 1-hour time
+00:08:02.960 frame. I've used BTC USDT on the 1-hour
+00:08:06.360 time frame as my goal today. I've asked
+00:08:08.760 it to use my border plate and to search
+00:08:12.520 through all of these indicators to try
+00:08:14.919 and find something that's actually
+00:08:16.360 profitable and not use the RSI and the
+00:08:19.480 EMAs and all of these absolutely
+00:08:22.400 outdated indicators that will actually
+00:08:24.840 lose money. So, I'm going to hit enter
+00:08:27.000 as well. I'm going to give it 2 hours to
+00:08:28.760 go away and find a strategy, and then I
+00:08:31.160 will come back with the back-testing
+00:08:33.080 results. And only that, the live trades
+00:08:35.320 of the 5-minute scalper.
+00:08:42.599 Okay, guys. I just thought interrupt
+00:08:44.480 this video very quickly. We have taken
+00:08:46.960 our first trade after an hour of
+00:08:49.920 actually back-testing and looking for
+00:08:51.839 actual setups. We've taken a trade on
+00:08:54.640 DEX USDT.
+00:08:58.000 We've taken $50 of collateral used and
+00:09:02.040 9x leverage. And very, very
+00:09:05.520 surprisingly, the trade actually has
+00:09:08.520 been closed out very quickly. So, I'm
+00:09:11.720 not sure what happened there. I'm just
+00:09:13.160 going to leave it to trade, and I'll
+00:09:14.760 come back when the full 2-hour period is
+00:09:16.760 actually over. In the meantime, we are
+00:09:19.640 actually building strategies out. We've
+00:09:22.360 already done 130 back-tests on using 16
+00:09:26.000 agents all in the same time. Pretty
+00:09:28.880 impressive. As I said earlier, we're
+00:09:30.360 using Opus 5 on extra. It allows us to
+00:09:33.360 open multiple agents. And as you can
+00:09:35.880 see, I'm not going to give away the
+00:09:38.280 actual back test results here, but they
+00:09:41.800 look pretty insane and I can't wait to
+00:09:44.120 share them with you. Okay, the 2-hour
+00:09:46.880 period is over. We've managed to back
+00:09:49.080 test multiple strategies and also do of
+00:09:51.960 a 5-minute scalping strategy. I think
+00:09:54.560 the best idea is is first of all, let's
+00:09:56.680 have a look at the back tested trading
+00:09:58.840 strategy and then we'll go over to the
+00:10:01.120 live trading results. As you can see,
+00:10:03.480 we've done over 130 back tests creating
+00:10:07.480 an amazing back testing results of
+00:10:10.480 1,968%.
+00:10:14.120 As always, we have asked a Claude to log
+00:10:16.880 all of the back test to our personal
+00:10:19.120 panel which is included in the actual
+00:10:21.880 prompt. You'll be able to see the back
+00:10:24.120 testing results on an equity curve with
+00:10:26.320 all of the results as you would expect
+00:10:28.280 from TradingView and even better if we
+00:10:31.000 roll down a little bit further here,
+00:10:32.600 you'll be able to see the Pine Script
+00:10:34.600 just here. So, let's go over to
+00:10:36.760 TradingView. Let's have a look to make
+00:10:38.440 sure that this trading strategy actually
+00:10:40.640 really is as good as it seems. Drumroll,
+00:10:43.839 please. And boom! As you can see on the
+00:10:47.160 back test results, we have exactly the
+00:10:49.160 same equity curve as we did with a
+00:10:51.000 Claude. The P&amp;L is 1,968%.
+00:10:54.960 The max drawdown is just under 30% which
+00:10:58.200 is a little bit high, but we could
+00:10:59.560 probably improve the position sizing to
+00:11:02.040 reduce the max drawdown. We've taken 111
+00:11:06.160 closed trades and we have an amazing
+00:11:08.160 profit factor of just above two. The
+00:11:10.640 equity curve looks brilliant, although a
+00:11:13.280 slight drawdown recently, it does seem
+00:11:15.600 to be recovering. Now, I did ask a
+00:11:17.760 Claude to go through the indicators that
+00:11:19.920 actually built this strategy because I
+00:11:21.680 believe that it is a pretty important to
+00:11:23.720 understand what is actually going on.
+00:11:25.920 So, here is exactly what a Claude built.
+00:11:29.280 We are using the T3 which is one of my
+00:11:32.560 favorite indicators for trend direction.
+00:11:34.840 When price is below the T 3, we're
+00:11:37.120 looking for shorts, and when above,
+00:11:39.640 we're looking for longs. We have
+00:11:42.120 multiple indicators to confirm our
+00:11:44.880 entries. The first being the squeeze
+00:11:48.480 momentum. Now, the squeeze momentum was
+00:11:50.720 a long time favorite of mine, and
+00:11:53.520 surprisingly enough, when I did a test
+00:11:55.600 with the Kimmy not long ago, it also
+00:11:57.880 chose the squeeze momentum. To run it,
+00:12:00.200 we just go up to indicators up here and
+00:12:01.960 we type squeeze momentum, and there's
+00:12:04.520 this one here by Lazy Bear. Now, it may
+00:12:07.080 be that it has had 114,000
+00:12:09.880 downloads, and that may be the reason
+00:12:11.840 that the LLMs are actually using it
+00:12:13.920 because it is one of the most popular
+00:12:16.080 indicators. In second place on the
+00:12:19.080 actual leaderboard. So, if we go over
+00:12:21.200 here, we can see we have waves above the
+00:12:23.840 zero and below the zero, and we also
+00:12:26.360 have these black crosses. To take
+00:12:28.720 entries, we're looking for the
+00:12:30.160 oscillator to go green, and we look for
+00:12:32.240 these crosses to be black. And when
+00:12:35.240 we're looking for a short, we're looking
+00:12:36.839 for black crosses, and we're looking for
+00:12:38.760 a red oscillator. Now, this indicator
+00:12:41.080 looks very much like a MACD or something
+00:12:43.960 like that, but behind it, it is a pretty
+00:12:46.400 powerful. It uses multiple indicators
+00:12:49.240 like Bollinger Bands to work out whether
+00:12:51.680 we're actually going to make a breakout.
+00:12:54.400 So, as I said earlier, it is one of my
+00:12:56.520 favorite indicators, and I'm not
+00:12:58.040 surprised that Claude actually chose it.
+00:13:00.320 Now, Claude actually came up with a
+00:13:02.320 perfect recipe, believing that these two
+00:13:05.640 indicators made the perfect entry.
+00:13:08.240 Claude then went away and worked out
+00:13:10.640 what would improve this strategy and
+00:13:12.440 make it a lot better, adding two new
+00:13:14.920 indicators which help us to stay out of
+00:13:17.400 the market. I did ask Claude to explain
+00:13:20.240 its choice, saying that the change of
+00:13:23.080 volatility and the shaking volatility
+00:13:26.240 indicators were the real edge behind
+00:13:29.880 this strategy. If you go deep into it,
+00:13:32.640 it tells us that volatility is
+00:13:34.840 forecastable as direction certainly
+00:13:37.840 isn't, which I tend to agree with
+00:13:39.920 Claude. When you look back at
+00:13:41.760 backtesting results, one big push in a
+00:13:44.400 direction often predicts another
+00:13:47.320 following big push. As it is a very very
+00:13:50.400 hard to work out working out whether or
+00:13:52.280 not it's going into a bullish or bearish
+00:13:54.320 momentum. It is a lot easier to work out
+00:13:57.200 whether or not a market is actually
+00:13:59.200 going to make a move. As it says a bit
+00:14:02.440 further down, you can see that the T3
+00:14:04.600 and the squeeze momentum are actually
+00:14:06.920 going to help us define direction. As
+00:14:09.800 the next two indicators, the change of
+00:14:13.080 volatility and the shaking volatility
+00:14:15.520 indicators will help us to know when we
+00:14:18.080 should actually take our entries. So, by
+00:14:20.320 adding these two indicators, we can miss
+00:14:23.520 out all of the sideways moving markets
+00:14:26.600 and actually take entries when there's
+00:14:28.520 actually going to be movement. So, we're
+00:14:30.240 looking for the shaking
+00:14:32.120 volatility indicator to be above zero
+00:14:35.320 for us to take an entry and for also the
+00:14:38.000 change of volatility to be above zero as
+00:14:41.080 well. So, these two indicators, it's
+00:14:43.320 pretty simple. Just go over to
+00:14:45.160 TradingView, type in shaking volatility.
+00:14:47.760 It's this one here by David Tech. And
+00:14:49.800 guys, if you want access to all of these
+00:14:51.520 indicators, you'll be able to find a
+00:14:52.839 link where I'll be able to send you a
+00:14:54.560 list of all of free indicators that I
+00:14:56.520 personally use plus the ones that we're
+00:14:58.400 talking about today. It's in the
+00:15:00.520 resource link which you'll be able to
+00:15:02.200 find in the description and in the
+00:15:03.800 pinned comment. Next, we're adding that
+00:15:06.520 one here. And the final indicator is the
+00:15:09.640 change change of volatility by BJR117.
+00:15:14.360 It's had 202 downloads. Now, these two
+00:15:17.440 indicators actually have had a huge
+00:15:19.600 impact on the actual max so drawdown,
+00:15:22.800 decreasing the max drawdown from 37% to
+00:15:25.720 the best settings that he actually found
+00:15:27.680 was around 21%.
+00:15:29.960 It also helped us increase our profit
+00:15:31.920 factor from 0.8 all the way up to two on
+00:15:35.480 best settings and cut down the trades
+00:15:38.440 from 208 to 106. So, these two
+00:15:42.080 indicators alone have made a huge
+00:15:43.880 difference. Adding on top of that, we're
+00:15:45.720 going to be add the ADX, which also
+00:15:47.840 complements these two indicators. We
+00:15:49.800 need the ADX to be red above blue. Our
+00:15:52.880 final indicator that we're going to be
+00:15:54.160 adding is the Stop ATR. Now, the Stop
+00:15:57.560 ATR is a little bit different from what
+00:15:59.480 I would use normally. This indicator is
+00:16:01.880 going to set the stop loss to the actual
+00:16:04.960 low of the indicator, and we're going to
+00:16:07.080 be using it as a trailing stop loss just
+00:16:10.400 like this. Now, personally, for a long
+00:16:13.400 time, I've been against the trailing
+00:16:15.120 stop losses. Although they do often make
+00:16:17.320 more profitable trading strategies, the
+00:16:19.600 problem is is all of your rules actually
+00:16:21.240 sit inside of TradingView instead of on
+00:16:23.360 your exchange, which just adds more risk
+00:16:26.160 to the situation. Unfortunately, I
+00:16:28.240 learned this the hard way. I had a
+00:16:29.880 couple of trades using trailing stop
+00:16:31.960 losses. There were some huge wicks on
+00:16:33.839 the market, and unfortunately, the
+00:16:35.680 alerts from TradingView took too long to
+00:16:37.720 get me out and made my stop losses a lot
+00:16:40.560 bigger than they should have. So,
+00:16:42.000 generally, what I try to do is put my
+00:16:43.960 stop loss directly on the exchange using
+00:16:46.240 market orders to get me out as fast as I
+00:16:48.400 possibly can. That makes the fees a
+00:16:50.440 little bit more, but as an algo trader,
+00:16:52.720 you set all of your rules in advance,
+00:16:55.040 you calculate how much fees are going to
+00:16:56.680 cost you, and then you have to find the
+00:16:58.520 balance between risk and those fees and
+00:17:01.080 actually making a profit. Okay, so once
+00:17:03.720 again, that is the backtest of this
+00:17:06.480 strategy that Claude managed to find for
+00:17:08.720 me within a 2-hour period. The
+00:17:11.000 backtesting results looks pretty
+00:17:13.079 amazing. I'm very, very impressed. So,
+00:17:16.119 now let's go back over to the scalping
+00:17:17.760 strategy and see how many trades it
+00:17:19.959 actually took and whether it was
+00:17:21.439 profitable. Okay, guys, so we're back
+00:17:23.400 here on the trading competition. The
+00:17:24.920 current trading competition is over. It
+00:17:27.079 took a grand total of four trades in 1
+00:17:30.440 hour and it won every single trade. Now,
+00:17:34.000 this is the first time that this has
+00:17:35.400 ever happened for me. Not only did it
+00:17:37.160 take four good trades, it they were all
+00:17:39.880 profitable and it actually did execute
+00:17:42.040 all of its trades. You can see we took a
+00:17:44.520 trade a long trade on DEX, which I spoke
+00:17:48.400 about earlier. It was in the trade for
+00:17:50.440 around 8 minutes and made $1.01.
+00:17:56.800 The next trade was a volume breakout.
+00:17:59.360 The trade was open for 6 minutes and
+00:18:01.720 made a grand total of $8.27.
+00:18:06.520 Now, the next one was the trade that I
+00:18:08.960 was talking about that almost went
+00:18:11.000 disastrous. We took a trade on bank long
+00:18:14.280 USD. See, the regi using a regime
+00:18:17.400 expansion, the ATR tripled and volume
+00:18:20.480 was 7.16
+00:18:22.760 x its normal volume. The volume died and
+00:18:26.440 this single trade almost cost the full
+00:18:29.640 amount of profit. Luckily, it bounced
+00:18:32.240 back up and bank made a very small
+00:18:35.880 profit of 33 cents. Now, as you can see,
+00:18:39.080 Claude actually seems to have regretted
+00:18:41.360 not staying in the trade and it opened a
+00:18:43.880 second trade. This one was open for 10
+00:18:47.000 minutes after a pullback, which was the
+00:18:49.760 pullback that actually worried Claude in
+00:18:52.240 the first place and made us close out in
+00:18:54.480 33 cents. Finally, it closed our fourth
+00:18:58.000 trade with $5.71
+00:19:01.000 cents in profit. That is the highest win
+00:19:03.840 rate I've ever seen on any AI. As a
+00:19:06.520 matter of fact, most AIs that I have
+00:19:08.360 tested have never made a profit like
+00:19:10.440 that. Now, you do have to remember,
+00:19:12.000 guys, that this is just the AI's that
+00:19:15.080 building their own tools. They don't
+00:19:16.960 have any access to any of my strategies
+00:19:19.120 or anything like that. They're just
+00:19:20.360 building strategies, trying to backtest
+00:19:23.040 on current conditions, and then take
+00:19:25.760 those trades. So, as you can see on my
+00:19:28.120 screen right now, this is the proof of
+00:19:29.800 the live trades and all of the profit
+00:19:32.520 that they actually made. I'm pretty
+00:19:34.400 impressed, but let's not get
+00:19:36.760 overexcited. Let's have a bit of a real
+00:19:39.280 talk about these strategies. Now, I'd
+00:19:41.640 love to know in the comment section,
+00:19:43.480 would you give AI your money and let it
+00:19:46.440 trade under these conditions?
+00:19:48.720 Personally, I wouldn't. I like to see a
+00:19:51.680 full backtest and understand what's
+00:19:53.600 actually in that black box. The problem
+00:19:56.000 with AI is they've all been trained on
+00:19:58.320 things that they've learned from places
+00:20:00.360 like Reddit and books that they have
+00:20:02.400 access to for their training data. So,
+00:20:05.120 if the stats are true of 95 to 99% of
+00:20:08.520 traders actually don't make any profit.
+00:20:11.440 Unfortunately, all of these AIs and LLMs
+00:20:14.320 have actually been trained on that data,
+00:20:16.960 so there's not much chance that they'll
+00:20:18.720 actually be profitable either. On the
+00:20:20.680 other hand, we did have a good backtest
+00:20:22.960 result. This is where I feel as though
+00:20:24.960 our leverage in AI is at the moment and
+00:20:28.360 how we can actually monetize and build
+00:20:31.360 profit from real algo trading. We can
+00:20:34.800 ask AI to backtest all day, every day,
+00:20:38.680 finding strategies using MCP servers to
+00:20:42.680 find real setups that would have cost
+00:20:45.240 thousands and thousands of dollars only
+00:20:47.880 two years ago. Now, just for
+00:20:49.920 understanding, I wouldn't even live
+00:20:51.680 trade this trading strategy. Although
+00:20:54.320 the backtesting looks absolutely
+00:20:56.360 amazing, I would put this into a real
+00:20:59.240 forward testing period for 1 to 3 months
+00:21:02.960 to make sure that the data and the live
+00:21:04.840 trading actually looks like the
+00:21:07.040 backtest. And then I'll put it onto a
+00:21:08.840 smaller account to make sure it actually
+00:21:10.720 works as I expected. Things like the
+00:21:13.400 trailing stop losses I've had to learn
+00:21:15.280 as I've gone along and have cost me
+00:21:17.320 money. So I've just put rules in place
+00:21:19.480 that I don't continue to lose stupid
+00:21:21.560 money in the future to trailing stop
+00:21:23.880 losses and rules that just don't work.
+00:21:27.320 So for testing purposes, I will actually
+00:21:29.320 be putting this into live trading. And
+00:21:31.480 if you guys want access to all of these
+00:21:33.880 strategies, I have backtested over 2,000
+00:21:36.880 of them. There are 400 of them on the
+00:21:39.120 school. You'll be able to find the links
+00:21:41.080 down in the description to that as well.
+00:21:43.320 Once again, guys, I hope you have a
+00:21:44.440 wonderful day. Take care. Keep safe.
+00:21:46.360 Trade like a boss and I will see you in
+00:21:48.640 the next video. Goodbye.
+00:21:50.360 >> Come on, David. And once again, he's
+00:21:52.720 gone to code [music] a new strategy.
+00:21:55.640 He'll be back in just 5 minutes. RSI and
+00:21:58.720 MACD. If it doesn't run into any bugs,
+00:22:02.640 there will [singing] be a new strategy.
