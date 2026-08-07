@@ -1,0 +1,560 @@
+# tactiq.io free youtube transcript
+# Claude Tested Over 25,000 ICT Strategies (Here's What Works)
+# https://www.youtube.com/watch/KML09tRtHM8
+
+00:00:00.160 In this video, I used Claw to run over
+00:00:02.320 25,000 back tests of one of the most
+00:00:05.040 popular day trading strategies on the
+00:00:07.120 internet, ICT Silver Bullet. This whole
+00:00:09.440 process covered 16 years of 1 minute
+00:00:12.160 futures data tested on NQ and ES with
+00:00:15.040 over 10 million simulated trades. Now,
+00:00:17.279 the reason why it's 25,000 versions and
+00:00:19.920 not just one is because we counted all
+00:00:21.840 the different ways that traders would
+00:00:23.519 define ICT rules. So, in this video, I
+00:00:26.080 tested the exact version, the way it's
+00:00:28.080 taught, the versions people usually
+00:00:30.160 trade day-to-day, as well as a 25,000
+00:00:32.960 config sample to capture everything in
+00:00:35.040 between. And what we found is that one
+00:00:37.280 part of the ICT framework does actually
+00:00:39.680 work, but most of the famous rules
+00:00:41.440 don't. So, I'll go over exactly which
+00:00:43.680 parts of the ICT framework do work,
+00:00:46.559 which parts don't, and how you can test
+00:00:48.800 this comprehensively yourself as well.
+00:00:50.719 Now, if it's your first time on the
+00:00:52.000 channel, my name is Brendan. I studied
+00:00:53.680 math and econ at UCLA, spent three years
+00:00:56.320 in investment banking at Raymond James,
+00:00:58.239 and have spent the past two years
+00:00:59.920 building out trading systems for
+00:01:01.680 clients. And as always, this is not
+00:01:03.840 financial advice, and I'm not
+00:01:05.119 guaranteeing any profits. I'm just
+00:01:06.880 showing you all the data and methodology
+00:01:08.640 behind these tests and how you can
+00:01:10.400 leverage them as well. So before diving
+00:01:12.400 into results, let me go over what this
+00:01:14.159 ICT framework really is. ICT is a
+00:01:16.960 framework for reading price and silver
+00:01:18.799 bullet is just the most famous setup
+00:01:20.560 built from it. And the easiest way I can
+00:01:22.479 explain the setup is through this chart
+00:01:24.080 here. So number one, what we have is a
+00:01:26.479 liquidity level. So this is just an
+00:01:28.720 obvious low on the chart where a bunch
+00:01:30.400 of traders have their stop losses
+00:01:32.079 sitting. Now this is the first core idea
+00:01:34.320 of ICT that price moves to where the
+00:01:36.799 orders are. And then number two here is
+00:01:39.439 this sweep. So this is the idea playing
+00:01:42.159 out. So as you can see here, price dips
+00:01:44.400 below the level. This takes out all the
+00:01:46.320 stops, grabs that liquidity, and then
+00:01:48.399 comes right back up. So number three
+00:01:50.720 here is displacement. This is just a
+00:01:53.040 strong fast move in the opposite
+00:01:55.119 direction. Now this exact fast move is
+00:01:57.920 what creates number four which is the
+00:01:59.920 fair value gap. So because this move was
+00:02:02.719 so fast it left behind a small zone that
+00:02:05.280 price basically skipped over where the
+00:02:07.520 candles don't overlap. And this is the
+00:02:10.000 second core idea of ICT which is
+00:02:12.560 basically that fast moves leave gaps
+00:02:14.879 behind and price tends to come back and
+00:02:17.680 fill those gaps. So that core idea is
+00:02:20.160 exactly what number five is here. So you
+00:02:22.800 wait for price to retrace back down into
+00:02:26.480 that gap and that's your entry. And then
+00:02:28.720 to complete the framework, we have
+00:02:30.400 number six here, which is the target.
+00:02:33.040 This is just the liquidity on the other
+00:02:35.200 side. So the obvious highs sitting
+00:02:37.200 above. And now the signature part of
+00:02:39.440 this silver bullet strategy is actually
+00:02:41.440 the timing. So it's only traded in three
+00:02:44.319 1-hour windows. The first is 3 to 4:00
+00:02:46.959 a.m. as you can see here, London time
+00:02:49.120 and then 10 to 11:00 a.m. and then 2 to
+00:02:51.920 3:00 p.m. New York time. So these are
+00:02:54.080 the three boxes on the bottom of the
+00:02:55.840 screen here. So now this strategy here
+00:02:58.239 comes with some pretty big claims
+00:03:00.239 attached. It's pitched as an everyday
+00:03:02.239 model, something that repeats every
+00:03:04.159 single day that you can generate income
+00:03:05.920 from. The idea theoretically is that you
+00:03:08.560 would consistently make profits and then
+00:03:10.640 the win rates that get quoted around
+00:03:12.640 this whole entire system run around 70
+00:03:15.440 to 80%. So what we're going to test
+00:03:17.519 today is this entire model, the claims
+00:03:20.239 from the ICT framework. And then
+00:03:22.400 finally, we're going to test these three
+00:03:24.159 special hours here to make sure that
+00:03:25.840 they do align with the claims and the
+00:03:27.840 methodology of the framework. Now the
+00:03:29.760 problem with testing ICT is that the
+00:03:32.080 rules here are pretty discretionary. So,
+00:03:34.480 if you ask five different ICT traders
+00:03:36.720 what counts as a liquidity sweep, you'll
+00:03:38.959 pretty much get five different answers.
+00:03:40.879 So, it basically teaches you the
+00:03:42.480 concepts, but every trader just quietly
+00:03:44.480 fills in their own numbers, like how big
+00:03:46.319 a gap counts or what counts as a sweep
+00:03:49.040 without ever writing any of it down. So,
+00:03:51.440 people trading this usually tend to
+00:03:53.360 never really check their own work.
+00:03:55.200 They're just doing this all based on
+00:03:56.799 feel. That's exactly why I use Claude
+00:03:59.280 for this entire methodology that I'm
+00:04:01.200 going to show you. So Claude can take
+00:04:03.120 the way you trade, force it into
+00:04:04.799 explicit rules, and then test those
+00:04:06.640 rules across years of data in a few
+00:04:08.879 sessions. So this way we can essentially
+00:04:11.120 remove the vagueness that normally
+00:04:12.879 protects a strategy like this ICT
+00:04:15.040 framework from being tested. And really
+00:04:17.199 quickly, if you are interested in
+00:04:18.399 testing out your own strategies or just
+00:04:20.160 learning how to use AI to build out
+00:04:21.759 these full in-depth testing or trading
+00:04:24.000 systems, I currently run the largest AI
+00:04:26.080 focused trading community on school. So
+00:04:28.160 make sure to click the link in the
+00:04:29.520 description if you're interested. So
+00:04:31.199 because of the discretionary nature of
+00:04:33.600 ICT, we actually turned every single
+00:04:35.759 judgment call into a dial here on the
+00:04:38.080 left hand side. So what counts as
+00:04:40.160 liquidity, how big the gap has to be,
+00:04:42.720 where you enter, where the stop goes,
+00:04:44.960 which window you trade, and which bias
+00:04:46.720 you use. These are all the different
+00:04:48.560 moving parts that every ICT trader would
+00:04:51.199 essentially define on their own. So, if
+00:04:53.120 we do multiply out every single one of
+00:04:54.960 these dials that people use, you get
+00:04:56.960 close to 258 million distinct versions
+00:05:00.000 of this strategy. Now, this number alone
+00:05:02.880 pretty much explains why no two ICT
+00:05:05.600 traders ever trade the same exact thing.
+00:05:08.000 Now, obviously, we can't run all 258
+00:05:10.479 million. So, what we did instead here is
+00:05:13.039 run a uniform random sample of 25,000 of
+00:05:16.160 them. So, you can think of this like
+00:05:17.680 voting polls. You don't need to call
+00:05:19.440 every single voter to know the results
+00:05:21.680 within a fraction of a percent. And you
+00:05:23.919 don't need to run every single version
+00:05:25.199 to know what the whole central territory
+00:05:27.280 looks like. Now, the second most
+00:05:28.720 important thing is that ICT traders
+00:05:30.400 don't actually spread out evenly across
+00:05:32.479 these 258 million versions. Most people
+00:05:35.600 cluster around the same defaults. So
+00:05:37.520 like entries at 50% of the gap, stops
+00:05:40.320 behind the swings, 2:1 targets, and then
+00:05:42.880 they drift apart on some of the more
+00:05:44.639 fuzzy stuff. This includes things like
+00:05:47.039 what counts as liquidity and how to read
+00:05:49.360 bias. So on top of these 25,000 random
+00:05:52.560 samples here, the popular versions also
+00:05:54.960 get tested directly by name. So you'll
+00:05:57.440 see these as the three names here as
+00:05:59.600 taught on the 5-minute chart as taught
+00:06:02.000 on the one minute chart. So these two
+00:06:04.160 here are supposed to be the closest
+00:06:05.919 thing to a textbook version of this ICT
+00:06:08.560 silver bullet built straight from how
+00:06:10.560 it's taught. And then we have this
+00:06:12.400 asraded version here. And this is kind
+00:06:15.039 of like the loose version that people
+00:06:16.720 actually run every single day. So
+00:06:18.639 counting any recent swing as liquidity
+00:06:21.759 re-entering after exits, things like
+00:06:23.680 that. So to make it more simple, this
+00:06:25.680 25,000 random sample pretty much covers
+00:06:28.319 the entire gamut of the ICT framework.
+00:06:31.039 And then we go over named versions that
+00:06:33.440 cover the exact spots where traders tend
+00:06:35.680 to usually live at. Now, one thing I
+00:06:37.440 want to make clear here is that we
+00:06:38.720 didn't just ask Claude if ICT worked.
+00:06:41.280 That doesn't work because AI's opinion
+00:06:43.199 is not a true comprehensive test. So
+00:06:45.520 what I did instead was purchase 16 years
+00:06:47.680 of one minute futures data. So over 11
+00:06:50.160 million bars of NQ and ES. Then with
+00:06:53.120 that data, I used claw to build out a
+00:06:55.120 full back testing system in layers with
+00:06:57.680 around 10 million simulated trades. So
+00:07:00.000 here on the right hand side, you can
+00:07:01.360 actually see the same testing stack. So
+00:07:03.280 every trade paid real commission. Every
+00:07:05.520 stopout paid slippage on top. If a
+00:07:07.599 candle touched the stop and the target
+00:07:09.360 in the same minute, we just counted it
+00:07:10.960 as a loss. Every config here got
+00:07:13.039 compared against literal coin flips with
+00:07:15.039 the same exact risk setup. We also
+00:07:16.880 corrected for luck across all 25,000
+00:07:19.599 tests. The reason for this is because if
+00:07:21.599 you run enough back tests, something
+00:07:23.039 will look amazing just purely by
+00:07:24.720 accident. Then all the survivors got run
+00:07:26.960 cold on ES with zero adjustments. And
+00:07:29.840 then finally, the last two years of data
+00:07:31.599 stayed completely locked away until the
+00:07:33.520 very end of the test. So moving on here,
+00:07:36.080 this panel shows exactly what we tested
+00:07:38.319 and what we didn't. So we can see that
+00:07:39.919 we covered fair value gaps, liquidity
+00:07:42.160 sweeps, displacement, market structure
+00:07:44.720 shifts, several different ways of
+00:07:46.720 reading bias, and every window plus
+00:07:49.199 every other hour of the session. And
+00:07:50.880 then to the right, what we didn't test
+00:07:52.400 was order blocks as entries, the subhour
+00:07:54.800 macro windows, news day filters, and
+00:07:57.440 forex and gold. And then our funnel here
+00:07:59.440 actually shows all of our 25,000
+00:08:01.759 configurations and what they filter down
+00:08:04.160 to. So out of all these back tests, only
+00:08:06.319 9,481
+00:08:07.919 even produced 100 trades. This was the
+00:08:10.240 minimum that you could really grade.
+00:08:12.319 6,190 made money after costs. 2,191
+00:08:17.039 cleared a decent risk adjusted bar.
+00:08:19.199 1,614 survived the luck correction. And
+00:08:22.160 then we're just left with 420 that
+00:08:24.080 actually held up on ES. So to put it
+00:08:26.560 plainly, only 1.7% of all the versions
+00:08:29.599 of this ICT framework actually survived
+00:08:32.000 this full stack. And just a quick
+00:08:33.760 spoiler here on our named version. So if
+00:08:36.320 you recall again, we had three different
+00:08:37.679 named versions. 1 minute, 5 minute
+00:08:40.000 taught by the textbook as well as an
+00:08:42.080 asraded version that shows the ICT rules
+00:08:44.800 that most traders typically use when you
+00:08:46.959 see them trading it online. So the
+00:08:48.720 five-minute textbook version, as it's
+00:08:50.480 taught exactly, survives the first two
+00:08:52.480 stages. So it trades and even makes a
+00:08:55.040 little bit of money, but then it dies
+00:08:56.399 right at the riskadjusted bar. The one
+00:08:58.480 minute textbook version of this ICT
+00:09:00.880 silver bullet actually made its way all
+00:09:02.800 the way to the very last stage and then
+00:09:04.640 dies on the ES check. And then the loose
+00:09:06.800 as traded version, which is the version
+00:09:08.800 that most ICT traders crowd around,
+00:09:11.760 actually makes it through every single
+00:09:13.440 stage into that final 1.7%. Diving into
+00:09:16.399 the claims of the ICT framework, the
+00:09:18.480 first is 70 to 80% win rate that gets
+00:09:21.360 quoted everywhere. This red band here at
+00:09:23.760 the top is the quoted range and then the
+00:09:25.760 bars are what we actually measured. So
+00:09:27.920 the top versions came in between 34 to
+00:09:30.399 48%. And even the surviving
+00:09:32.399 configurations, so the best versions out
+00:09:34.240 of all 25,000 back tests centered around
+00:09:37.040 52%. Now, interestingly, there actually
+00:09:39.680 was a 70% win rate in the space. Uh,
+00:09:42.399 exactly five configurations out of the
+00:09:44.640 25,000 found it. Every single one of
+00:09:46.880 them got there the same exact way by
+00:09:48.640 taking quick one profits around 20 times
+00:09:50.720 a year. And then now just to be clear,
+00:09:52.720 this is just a win rate, but plenty of
+00:09:54.640 these actually did make money overall.
+00:09:57.120 They just made it winning less than half
+00:09:59.200 the time with 2:1 targets and timed
+00:10:01.680 exits. So overall, it could be
+00:10:03.360 profitable. It's just that at these win
+00:10:05.120 rates across thousands of traders,
+00:10:07.120 you're going to run into people with a
+00:10:08.640 bunch of incredible months and then some
+00:10:10.800 people that just blow their accounts in
+00:10:12.640 a few months as well. Next, what we
+00:10:14.320 tested here on the right hand side are
+00:10:15.920 the famous hours of the ICT framework.
+00:10:18.480 So what we did here is run the same
+00:10:20.079 exact logic as a single window strategy
+00:10:22.640 on every single hour of the future
+00:10:24.320 session. We wanted to see if the silver
+00:10:26.000 bullet hours really were special. They
+00:10:27.920 should theoretically sit at the top of
+00:10:29.760 the chart. But as you can see, they
+00:10:31.360 pretty much sit inside the pack. So the
+00:10:33.200 2 p.m. window did fine. The London did
+00:10:35.760 fine. And then the 10 a.m. window, which
+00:10:37.600 is the main one that everyone focuses
+00:10:39.200 on, actually came out very slightly
+00:10:40.959 negative. And we ran this test across
+00:10:43.360 not only the textbook version, we ran
+00:10:45.040 the same exact test on the best
+00:10:46.480 performing configurations. and the
+00:10:48.320 window still sat pretty much in the
+00:10:49.680 middle of the rest of the pack of all
+00:10:51.200 these hours. So the conclusion here is
+00:10:53.279 just that the edge isn't really in the
+00:10:55.360 hours that you're actually trading this
+00:10:57.440 ICT strategy. Now that's a perfect
+00:10:59.680 transition as to what rules actually do
+00:11:01.839 matter. So what I did here is build up
+00:11:04.399 the strategy one rule at a time and then
+00:11:06.720 score it at every single step and
+00:11:08.640 everything else stays fixed through the
+00:11:10.079 whole way. So the only thing really
+00:11:11.279 changing are the rules every step. So if
+00:11:13.440 we started with just fair value gap
+00:11:15.360 entries and nothing else running all day
+00:11:17.200 long towards a 33 then if we add the
+00:11:20.160 sweep requirement it jumps it to a 69
+00:11:22.880 and this is basically the only rule in
+00:11:24.640 this entire stack that adds something to
+00:11:27.200 this framework. Once we add things like
+00:11:28.959 the displacement filter takes it down a
+00:11:31.040 bit. Restricting it to the famous hours
+00:11:33.440 takes it down a little bit again. And
+00:11:35.120 then if you were to add the 15-minute
+00:11:36.800 bias, which is the structure that most
+00:11:38.800 silver bullet guides teach, it drops it
+00:11:40.959 all the way down to 0.16. And across the
+00:11:43.519 entire 25,000 sample, the best
+00:11:45.920 performing versions either ran no bias
+00:11:48.320 at all or a really simple daily one. So
+00:11:50.640 basically, more of the rule book that
+00:11:52.000 you follow after the sweep, the worse it
+00:11:53.920 gets. Now, bias itself isn't fully
+00:11:56.800 useless. We also ran a version with a
+00:11:58.800 perfect crystal ball bias that knows the
+00:12:00.959 day's direction in advance. Now
+00:12:02.800 obviously this is a look ahead bias but
+00:12:04.560 just to show you since it is
+00:12:05.760 discretionary if you did have the right
+00:12:07.440 bias then yes this would theoretically
+00:12:09.600 beat out everything else. Now this
+00:12:11.519 pretty much lines up with what we see in
+00:12:13.120 the final results shortly which is that
+00:12:15.120 if we were to look at the loose as
+00:12:16.880 traded version that a lot of people run.
+00:12:18.880 It keeps the gap it keeps the sweep. So
+00:12:21.360 the two rungs that score the highest
+00:12:23.040 pretty much drops the bias that craters
+00:12:25.279 everything and then it just trades a
+00:12:26.720 lot. Now, just to see how often these
+00:12:28.480 strategies do trade, because the model
+00:12:30.800 does get pitched, this kind of like a
+00:12:32.160 setup that repeats every single day. If
+00:12:34.079 we were to follow the astop version on
+00:12:36.639 the five minute charts exactly, it's
+00:12:38.959 only going to fire around 34 times a
+00:12:40.639 year. On one minute charts, it's around
+00:12:43.440 133 times a year. So, about every other
+00:12:45.839 day. And then as traded, which again is
+00:12:47.839 kind of like the loose version that a
+00:12:49.120 lot of people run. This counts any
+00:12:50.959 recent swing as liquidity and
+00:12:53.279 re-entering after exits, it comes to
+00:12:55.519 around 1,96 trades a year. So this comes
+00:12:58.880 out to around 68 trades a day and is the
+00:13:01.120 more commonly run version of ICT that
+00:13:03.279 you see around places like YouTube. Now,
+00:13:05.279 the real question for a day trading
+00:13:07.440 strategy like ICT Silver Bullet isn't
+00:13:10.399 whether it beats buy and hold because
+00:13:12.160 nobody uses it for that. The idea here
+00:13:14.160 with the strategy is daily income. So
+00:13:16.079 the framing is that you would
+00:13:17.519 essentially run this um have it replace
+00:13:19.600 like your income because you're able to
+00:13:21.279 make winning trades every single day. So
+00:13:23.360 this is exactly how we graded it. Uh the
+00:13:25.600 book version or the as taught version
+00:13:27.360 pretty much fails this test. It loses
+00:13:29.200 more days than it wins, more weeks than
+00:13:30.880 it wins, and more months than it wins.
+00:13:32.639 But the high frequency versions like
+00:13:34.399 this as traded, 1996 times a year
+00:13:37.519 actually do look like income at the
+00:13:39.200 monthly level with around 62 to 68%
+00:13:41.680 positive months. And to be clear, this
+00:13:43.440 asshed version did make real money over
+00:13:45.519 the full test as you'll see. So the
+00:13:47.600 question isn't whether it's profitable,
+00:13:49.279 it's whether it pays like an income,
+00:13:50.959 right? So if you were to dive a bit
+00:13:52.639 deeper and look at, you know, the best
+00:13:54.399 configuration, it had a streak of losing
+00:13:56.959 19 days in a row. Now, that's obviously
+00:13:59.199 not going to act like income to you. And
+00:14:01.839 if you did want to replace your income,
+00:14:03.760 something like this over a month where
+00:14:05.120 you just show up and lose every single
+00:14:06.720 day does kind of go against that case.
+00:14:08.880 Now, we also did a couple consistency
+00:14:10.720 checks before the final test. We just
+00:14:12.639 wanted to see if the strategies
+00:14:14.320 transferred. So, 420 out of the 1614
+00:14:17.680 survivors that stayed profitable when we
+00:14:20.079 ran them cold on ES with no retuning, no
+00:14:23.440 adjustments at all. This just showed
+00:14:24.959 that 420 out of the 1614 survivors
+00:14:28.000 stayed profitable when we then ran them
+00:14:30.240 cold on ES. And this was with no
+00:14:32.639 retuning and no adjustments at all. Now
+00:14:34.720 here we have the final test which is
+00:14:36.399 that hold out I talked about earlier
+00:14:38.320 where we froze and locked away two years
+00:14:40.320 of data. So this is the two full years
+00:14:42.399 of data that nothing in the study ever
+00:14:44.399 touched. So no configuration saw these
+00:14:46.560 two years of data. No filter was tuned
+00:14:48.480 on it and we ran it exactly one time. So
+00:14:50.959 whatever this showed was going into the
+00:14:52.639 video. Here we can see that the best
+00:14:54.320 survivor made $455,000
+00:14:57.040 in those two years on a single contract
+00:14:59.199 with the sharp 13 all 24 months
+00:15:01.600 positive. Now, obviously, this isn't
+00:15:03.600 realistic at all. This is essentially
+00:15:05.360 the most fine-tuned version of the Strat
+00:15:07.760 that you'll see, but this was the best
+00:15:10.160 one out of those 25,000 configurations.
+00:15:12.800 Now, more interestingly is the loose as
+00:15:15.120 traded version. It actually made
+00:15:16.720 $251,000, and even the textbook versions
+00:15:19.920 stayed positive just on pretty small
+00:15:21.760 samples. Now, this is pretty promising
+00:15:23.680 given that when a strategy is overfit,
+00:15:26.399 completely falls apart the moment you
+00:15:28.000 give it data that it's never seen
+00:15:29.440 before. But here, you can see they held
+00:15:31.279 up. So there obviously is validity to
+00:15:33.600 the ICT framework. Now there are two
+00:15:35.760 caveats which is mostly the market.
+00:15:37.519 These two recent years were strong
+00:15:39.680 rising market. So this is going to be as
+00:15:42.000 friendly as it gets for a strategy that
+00:15:43.839 buys dips after sweeps. So I would treat
+00:15:46.399 this more as a ceiling not like as an
+00:15:48.480 expectation. And the second thing is
+00:15:50.240 that even with every cost and slippage
+00:15:52.639 counted for this is still on paper
+00:15:54.240 fills. What I mean by that is that when
+00:15:56.000 price smashes through your order you
+00:15:57.920 always get filled and those are mostly
+00:15:59.839 your losers. When price just taps your
+00:16:02.000 level and then bounces, which is your
+00:16:03.680 winner, other orders are ahead of yours,
+00:16:05.920 and you often don't get filled. So, this
+00:16:08.000 is assuming perfect fills, but in real
+00:16:10.000 life, you would keep all your losers and
+00:16:11.839 miss some of your winners as well. Now,
+00:16:13.920 here's the entire 16 years on one equity
+00:16:16.720 curve chart. So, the colored lines here
+00:16:18.720 are just the named versions plus the
+00:16:20.560 best survivors all in one single
+00:16:22.240 contract the entire time. And then
+00:16:24.079 everything to the right of this dotted
+00:16:25.519 line is the hold out. So, these are the
+00:16:27.120 two locked away years that you watched
+00:16:29.199 get tested. Now, like I mentioned
+00:16:31.040 earlier, sometimes people say that you
+00:16:32.880 just need experience and screen time to
+00:16:35.040 get better at ICT. So, what we did here
+00:16:37.360 is actually measure how good that
+00:16:39.040 discretion would theoretically need to
+00:16:40.959 be. And the answer is 17.2%. So, that's
+00:16:44.000 a share of losing trades you would need
+00:16:45.600 to correctly skip in advance to turn
+00:16:48.959 what's being stated as like a textbook
+00:16:50.639 version to a solid strategy. Now, some
+00:16:52.800 people can't actually do this. It's just
+00:16:54.880 can't be proven through a back test. So
+00:16:57.199 now going into the most important part
+00:16:58.959 of the video, which is what actually
+00:17:00.560 survived and what parts of the ICT
+00:17:03.040 framework do work. This is what made
+00:17:05.280 pretty much all the money. The first
+00:17:06.799 thing is to require the liquidity sweep
+00:17:09.039 just because it's the only rule that
+00:17:10.640 really adds an edge. The second is to
+00:17:12.799 take your direction from the sweep. So
+00:17:14.799 you fade the side that just got run
+00:17:16.640 because that's where all the information
+00:17:17.919 is. Third is entering on the one minute
+00:17:20.480 gap that the reversal leaves behind. And
+00:17:23.039 this is again because the 5-minute
+00:17:24.799 versions underperformed. Fourth is
+00:17:26.799 basically trading every single setup and
+00:17:28.559 trading often because the edge per trade
+00:17:30.559 is pretty small and the money comes from
+00:17:32.480 frequency as we've shown. Fifth, we have
+00:17:35.039 dropping the 15-minute bias since it
+00:17:37.200 just makes things worse. And sixth, you
+00:17:39.360 don't need to wait for the special
+00:17:40.480 trading hour windows. So basically, the
+00:17:42.480 version of ICT that survives all this
+00:17:44.320 testing is the simplest one. It's really
+00:17:46.400 just one real signal, simple entry,
+00:17:48.880 basic risk management, and then trading
+00:17:50.480 a lot. Now, if this strategy does sound
+00:17:52.799 familiar, it's basically because it's
+00:17:54.880 the same idea as mean reversion. So, a
+00:17:57.760 sweep and a snapback is just mean
+00:17:59.440 reversion on a one minute chart with
+00:18:01.360 different vocabulary around it. Now, if
+00:18:03.120 you want to build this testing system
+00:18:04.480 yourself, it's the same format as
+00:18:06.240 always. The whole system is built in
+00:18:08.240 layers, and each layer is a separate
+00:18:09.919 prompt. The first one builds the data
+00:18:12.080 layer, so it pulls and cleans all the
+00:18:13.840 futures data. The second builds the
+00:18:16.000 detectors, so the gaps, sweeps, and
+00:18:18.799 structure shifts. The third builds the
+00:18:20.960 engine that simulates every trade with
+00:18:22.960 real costs. The fourth runs the 25,000
+00:18:26.160 configuration sweep all the validations.
+00:18:28.559 And then the last one builds the
+00:18:29.919 dashboard that you've been looking at
+00:18:31.440 this whole time. And the bigger point
+00:18:33.280 here is that this isn't really about the
+00:18:35.120 silver bullet. Whatever style you trade,
+00:18:37.280 if it currently lives in your head just
+00:18:38.880 as a feel, you can do the same exact
+00:18:40.880 method here, turn it into rules, and
+00:18:43.200 actually find out if it works. And like
+00:18:45.360 I mentioned in my previous videos, you
+00:18:47.280 can literally just screenshot the
+00:18:48.559 prompts that I'm showing you here and
+00:18:50.240 feed them to an AI model. So you can
+00:18:51.919 build it either in the web app, so like
+00:18:53.440 claw.ai, or you can use claude code,
+00:18:55.679 which is a little bit more advanced. But
+00:18:57.360 you'll have one single place to edit all
+00:18:59.039 your code and continually update it as
+00:19:00.960 well. Now, if you enjoyed this video,
+00:19:02.559 make sure to leave a like, comment, and
+00:19:04.320 subscribe as it greatly helps out the
+00:19:06.000 channel. And if you do want to go
+00:19:07.280 deeper, like I mentioned, my community
+00:19:09.039 is in the description if you're
+00:19:10.480 interested. We have full in-depth guides
+00:19:12.480 on building out these trading systems as
+00:19:14.480 well as premium data sources. So, if
+00:19:16.240 you're interested in building a test
+00:19:17.679 just like this, we have premium futures
+00:19:20.080 data with scripts that you can run. So,
+00:19:22.080 make sure to click the link if you're
+00:19:23.360 interested.
